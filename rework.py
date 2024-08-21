@@ -45,8 +45,9 @@ def main():
                     print("---> Successfully Scanned Barcode 1\n")                
                     scanning_barcode1 = False                    
                 except:
-                    print("Try scanning Barcode 1 again")
-                    continue
+                    if barcode1 == None:                        
+                        print("Try scanning Barcode 1 again")
+                        continue
                 
                 scanning_barcode2 = True
                 while scanning_barcode2:
@@ -65,8 +66,9 @@ def main():
                         print("---> Successfully Scanned Barcode 2\n")                
                         scanning_barcode2 = False                        
                     except:
-                        print("Try scanning Barcode 2 again")
-                        continue
+                        if barcode2 == None:
+                            print("Try scanning Barcode 2 again")
+                            continue
                 time.sleep(2)
                 clear()                
                 print("Kindly Begin Rework...")
