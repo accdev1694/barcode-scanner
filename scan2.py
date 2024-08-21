@@ -16,4 +16,5 @@ def scan2():
             
     except Exception as error:
         print("Error:", error)
-        exit()
+        return None, None, None, None
+        

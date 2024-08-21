@@ -2,7 +2,6 @@ import cv2
 from pyzbar import pyzbar
 from phone_camera import phone_camera
 
-
 def scan1():
     try:
         barcode1 = phone_camera()
@@ -18,4 +17,4 @@ def scan1():
             
     except Exception as error:
         print("Error:", error)
-        exit()
+        return None, None, None, None
