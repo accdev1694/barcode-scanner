@@ -8,36 +8,41 @@ import time
 
 
 def scan1():
-    scanning_barcode1 = True
-    while scanning_barcode1:
-        print("\nScan barcode 1 (TOP Barcode on Euro Pallet)\n")        
+    while True:
+        scanned = []
+        print("\nScan barcode 1 (TOP Barcode on Euro Pallet)\n")
         time.sleep(2)
-        print("Waiting to scan...\n")
+        print("Scanning...\n")
         time.sleep(6)
-        # scan barcode 2
+        # scan barcode1
         clear()
         # if barcode1 scans as expected
         try:
             barcode1 = phone_camera()
+            # check if barcode is already scanned
+            if barcode1 in scanned:
+                raise ValueError("Barcode already scanned!\n")                
+            # check if a barcode is found
             if not barcode1:
-                raise ValueError("No Barcode found")
+                raise ValueError("No Barcode found\n")
+            # check if barcode is the expected type
             elif barcode1[0][:2] != '02':
-                raise ValueError(
-                    "Expected Barcode not found, should start with '02'")
-            product_no = f"{barcode1[0][3]}{
-                barcode1[0][10:15]}"        # euro part number
-            quantity = barcode1[0][-2:]         # euro quantity
-            expiry_date = f"{barcode1[0][22:24]}.{
-                barcode1[0][20:22]}.20{barcode1[0][18:20]}"  # euro expiry date
-            scanning_barcode1 = False
-            return "---> Successfully Scanned Barcode1\n", barcode1, product_no, quantity, expiry_date
+                raise ValueError("Expected Barcode not found, should start with '02'\n")
+            # all checks passed
+            product_no = f"{barcode1[0][3]}{barcode1[0][10:15]}"
+            quantity = barcode1[0][-2:]
+            expiry_date = f"{barcode1[0][22:24]}.{barcode1[0][20:22]}.20{barcode1[0][18:20]}"
+            scanned.append(barcode1)
+            print("---> Successfully Scanned Barcode1\n")
+            return product_no, quantity, expiry_date
+
         except Exception as error:
             print(f"Error: {error}")
-            user_input = input(
-                "\nPress any Key to scan Barcode1 again or '1' to quit\n")
-            if user_input == "1":
-                clear()
-                sys.exit("\nHurts to see you go!\n")
-                scanning_barcode1 = False                
-            else:
-                continue            
+            while True:
+                user_input = input("Press '1' to scan again\n")
+                if user_input == '1':
+                    break
+                else:
+                    print("Invalid Input!\n")                
+                    continue
+
