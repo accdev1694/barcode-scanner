@@ -34,8 +34,8 @@ def main():
         # take note of current day and time
         start_time = datetime.now().time().replace(microsecond=0)
         start_day = datetime.now().replace(microsecond=0)
-        with open("rework.csv", "a") as file:
-            file.write(f"Name: {user_name} is logged in \nDate: {
+        with open(f"Rework-{user_name}-{start_date}.csv", "a") as file:
+            file.write(f"{user_name} is logged in \nDate: {
                 start_date} \nStart Time: {start_time}\n")
 
 # ----- >>> start work <<< --------------------------------
@@ -52,8 +52,8 @@ def main():
                 euro_pallet_count += 1
                 end_time = datetime.now().time().replace(microsecond=0)
                 duration = (datetime.now().replace(microsecond=0)) - start_day
-                duration = f"{duration.total_seconds() / 60:.1f}"
-                durations += float(duration)
+                duration = round((duration.total_seconds() / 60), 1)
+                durations += duration
                 pallet_details.append(f"\n{euro_pallet_count}.) Euro Pallet No: {pallet_no}\n Date: {start_date}\n Start Time: {
                                       start_time}\n Finish Time: {end_time}\n Time Taken: {duration} minutes\n Part No: {product_no}\n Batch No: {lot_no}\n Expiry Date: {expiry_date}")
                 file.write(f"\n{pallet_details[-1]}\n")
@@ -82,7 +82,7 @@ def main():
                 elif user_input == '2':
                     file.write(f"\nSummary on {start_date}\n User: {
                                user_name}\n Pallets Completed:\n")
-                    counter = 1                    
+                    counter = 1
                     for euro_pallet in scanned_euro_pallets:
                         file.write(f"{counter}.) {euro_pallet}\n")
                         counter += 1
@@ -91,16 +91,11 @@ def main():
                     file.write(f"Total Euro Pallets Completed: {
                                euro_pallet_count}\n")
                     file.write(f"Total Time Taken: {
-                               durations / 60:.2f} minutes\n")
-                    file.write(f"\n\n{user_name} Logged out at {
-                               datetime.now().replace(microsecond=0)}")
-                    print(f"{user_name} Logged out at {
-                          datetime.now().replace(microsecond=0)}")
+                               durations} minutes\n")
+                    file.write(f"\n\n{user_name} Logged out:\nDate: {
+                        datetime.now().date()}\nTime: {datetime.now().time().replace(microsecond=0)}")
                     break
         break
-    print("End")
-        
+
 
 main()
-
-print("Very End")
