@@ -1,4 +1,5 @@
 import subprocess
+import sys
 
 # the subprocess module in python runs commands automatically in the terminal
 # the run function in the subprocess module executes in place, taking in a list as argument
@@ -29,7 +30,7 @@ def github_push(commit_message):
     # run commit message only if the python file is run locally
     # dont, if the program is being imported as a module into another project file
 if __name__ == "__main__":
-    commit_message = input("Commit Message: ")
+    commit_message = sys.argv[1]
 
     # call function, passing in the commit message
     github_push(commit_message)
