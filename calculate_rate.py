@@ -7,7 +7,7 @@ def calculate_rate(real_time, real_qty, target_qty, task):
     # add more conditions as you scale use-cases
     
     # calculate the rates
-    real_rate = (60 * real_qty) / real_time
+    real_rate = round((real_qty * 60) / real_time, 1)
     target_rate = target_qty
     
     if real_rate > target_rate:
