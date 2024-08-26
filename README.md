@@ -17,8 +17,9 @@
 - 3.  scan2.py: This module uses the phone_camera.py module to scan the bottom, second barcode on the Euro Pallet
 - 4. scan3.py module: This module uses the phone_camera.py module to scan the bottom, third barcode on the Blue Pallet after completion
 - 5. rework.py: This is the main file for the application. it scans the pallets, prints performance reports to the user, and records full work details including overall daily performance on a csv file, created dynamically and named dynamically
-- 6. check_args.py: This module takes in the command-line arguments and ensures that the user types their name as a second argument. 
+- 6. check_args.py: This module takes in the command-line arguments and ensures that the user types their name and task as arguments. 
 - 7. calculate_rate.py: This module takes as input, the actual work speed of the user as well as the work target for that job type, returning the work rate, and performance prompt to the user
+- 8. rework_abridged.py: This is just a simpler implementation of the same rework.py program
 
 ## Installation
 Follow the steps below to run the app
@@ -55,11 +56,13 @@ Follow the steps below to run the app
 3. **Run the app:**
     ```bash
     # starting the app
-    python rework.py user_name
+    python rework.py user_name Rework
 
 
 ## Usage
-You must supply your name as a 2nd command-line argument or the app will fail. if you are adding more than one name, enclose within quotes or seperate them with a symbol such as dashes or underscores, but not spaces
+- You must supply your name as well as task as a 2nd and 3rd command-line arguments or the app will fail. if you are adding more than one name, enclose within quotes or seperate them with a symbol such as dashes or underscores, but not spaces
+
+- the rework_abridged.py program is just an abridged implementation of the same program
 
 
 

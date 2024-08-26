@@ -24,7 +24,7 @@ def main():
     durations = 0
 
 # >>> start the day || store records in csv file || check args
-    user_name = check_args(sys.argv)
+    user_name, task = check_args(sys.argv)
 
 # >>> logging in to start work <<< ---------------------
     logged_in = True
@@ -36,8 +36,8 @@ def main():
         start_time = datetime.now().time().replace(microsecond=0)
         start_day = datetime.now().replace(microsecond=0)
         print()
-        with open(f"Rework-{user_name}-{start_date}.csv", "a") as file:
-            file.write(f"{user_name} is logged in \nDate: {
+        with open(f"{task}-{user_name}-{start_date}.csv", "a") as file:
+            file.write(f"{user_name} is logged in for {task.upper()}\nDate: {
                 start_date} \nStart Time: {start_time}\n")
 
 # ----- >>> start work <<< --------------------------------
@@ -57,11 +57,10 @@ def main():
                 duration = round((duration.total_seconds() / 60), 1)
                 durations += duration
                 pallet_details.append(f"\n{euro_pallet_count}.) Euro Pallet No: {pallet_no}\n Date: {start_date}\n Start Time: {
-                                      start_time}\n Finish Time: {end_time}\n Time Taken: {duration} minutes\n Part No: {product_no}\n Batch No: {lot_no}\n Expiry Date: {expiry_date}\n\n{calculate_rate(duration, 1, 6, 'rework')}\n")
-                
+                                      start_time}\n Finish Time: {end_time}\n Time Taken: {duration} minutes\n Part No: {product_no}\n Batch No: {lot_no}\n Expiry Date: {expiry_date}\n\n{calculate_rate(duration, 1, 6, task.lower())}\n")
+
                 file.write(f"\n{pallet_details[-1]}\n")
-                # file.write((calculate_rate(duration, 1, 6, "rework")))
-                print((calculate_rate(duration, 1, 6, "rework")))
+                print((calculate_rate(duration, 1, 6, task.lower())))
 
                 if user_input == 'n':
                     # reset the time and day
@@ -98,9 +97,9 @@ def main():
                     file.write(f"Total Time Taken: {
                                durations} minutes\n")
                     file.write(
-                        f"\n{calculate_rate(durations, euro_pallet_count, 6, "rework")} Today\n")
+                        f"\n{calculate_rate(durations, euro_pallet_count, 6, task.lower())} Today\n")
                     print(f"\nYou Logged Out.\n{
-                          (calculate_rate(durations, euro_pallet_count, 6, "rework"))} Today")
+                          (calculate_rate(durations, euro_pallet_count, 6, task.lower()))} Today")
                     file.write(f"\n\n{user_name} Logged out:\nDate: {
                         datetime.now().date()}\nTime: {datetime.now().time().replace(microsecond=0)}")
                     break

@@ -11,9 +11,9 @@ def calculate_rate(real_time, real_qty, target_qty, task):
     target_rate = target_qty
     
     if real_rate > target_rate:
-        return f"You are doing Excellent @ {real_rate} {item}/hr"
+        return f"You are doing Excellent on {task}, @ {real_rate} {item}/hr"
     elif real_rate == target_rate:
-        return f"You are on Target @ {real_rate} {item}/hr"
+        return f"You are on Target on {task}, @ {real_rate} {item}/hr"
     else:
-        return f"You are below Target @ {real_rate} {item}/hr"
+        return f"You are below Target on {task}, @ {real_rate} {item}/hr"
         
