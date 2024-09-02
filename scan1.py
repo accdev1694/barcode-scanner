@@ -9,7 +9,6 @@ import time
 
 def scan1():
     while True:
-        scanned = []
         print("\nScan barcode 1 (TOP Barcode on Euro Pallet)\n")
         time.sleep(2)
         print("Scanning...\n")
@@ -19,9 +18,6 @@ def scan1():
         # if barcode1 scans as expected
         try:
             barcode1 = phone_camera()
-            # check if barcode is already scanned
-            if barcode1 in scanned:
-                raise ValueError("Barcode already scanned!\n")                
             # check if a barcode is found
             if not barcode1:
                 raise ValueError("No Barcode found\n")
@@ -32,8 +28,6 @@ def scan1():
             product_no = f"{barcode1[0][3]}{barcode1[0][10:15]}"
             quantity = barcode1[0][-2:]
             expiry_date = f"{barcode1[0][22:24]}.{barcode1[0][20:22]}.20{barcode1[0][18:20]}"
-            scanned.append(barcode1)
-            print("---> Successfully Scanned Barcode1\n")
             return product_no, quantity, expiry_date
 
         except Exception as error:

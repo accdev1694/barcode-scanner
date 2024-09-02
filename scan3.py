@@ -7,7 +7,6 @@ import sys
 
 
 def scan3():
-    scanned = []
     while True:
         print("\nScan Barcode 3 (Blue Pallet Barcode)\n")
         time.sleep(2)
@@ -16,17 +15,13 @@ def scan3():
         # scan barcode3
         clear()
         try:
-            barcode3 = phone_camera()
-            # check if barcode is already scanned
-            if barcode3 in scanned:
-                raise ValueError("Barcode already scanned!\n")                
+            barcode3 = phone_camera()            
             if not barcode3:
                 # check if a barcode is found
                 raise ValueError("No Barcode found\n")
             elif barcode3[0][:3] != 'L11':
                 raise ValueError("Expected Barcode not found, should start with 'L11'\n")
             # all checks passed             
-            print("---> Successfully Scanned Barcode3\n")
             return barcode3
 
         except Exception as error:

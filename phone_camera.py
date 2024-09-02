@@ -11,7 +11,7 @@ from pyzbar import pyzbar
 
 def phone_camera():
     # Save camera ip address as value of the url variable
-    url = "http://192.168.56.229:8080/video"
+    url = "http://192.168.141.134:8080/video"
     # Call the videocapture function in the cv2 module
     cap = cv2.VideoCapture(url)
     code = []

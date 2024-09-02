@@ -59,8 +59,9 @@ def main():
                     pallet_details.append(f"\n{counter}.) Euro Pallet No: {pallet_no}\n Date: {start_date}\n Start Time: {
                         start_time}\n Finish Time: {end_time}\n Time Taken: {duration} minutes\n\n{calculate_rate(duration, 1, 6, task.lower())}\n")
 
-                    file.write(f"\n{pallet_details[-1]}\n")
-                    print((calculate_rate(duration, 1, 6, task.lower())))
+                    file.write(f"\n{pallet_details[-1]} on this pallet\n")
+                    print(f"{(calculate_rate(duration, 1, 6, task.lower()))} on this pallet")
+                    print(f"{(calculate_rate(durations, counter, 6, task.lower()))} today")
 
                     if user_input == '1':
                         # reset the time and day
